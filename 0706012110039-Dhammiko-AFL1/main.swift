@@ -41,10 +41,6 @@ func tuku(){
 }
 
 
-print("tes github")
-
-
-
 
 
 
