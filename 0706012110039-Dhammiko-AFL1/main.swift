@@ -44,9 +44,7 @@ repeat{
     default:
         print()
     }
-//    if (input == "1"){
-//        tuku()
-//    }
+
 } while input.caseInsensitiveCompare("q") != .orderedSame
 
 //shoppingcart page
@@ -54,6 +52,7 @@ func shoppingcart(){
     repeat{
         if listpesanan.isEmpty{
             print("Your cart is empty")
+            print("\nPress [B] to go back")
         }else{
             var ordersByRestaurant: [String: [(String, Int, Int)]] = [:]
             for item in listpesanan {
@@ -74,9 +73,54 @@ func shoppingcart(){
                     print("- \(order.0) x \(order.1)")
                 }
             }
+            print("\nPress [B] to go back")
+            print("Press [P] to pay/checkout")
         }
-        print("[B]ack")
+        
         input = readLine()!
+        input = input.lowercased()
+        
+        if input == "p" && !listpesanan.isEmpty {
+            //counting the price
+            var totalprice = 0
+            for item in listpesanan{
+                totalprice += (item.3 * item.2)
+            }
+            print("\nYour total order : \(totalprice)")
+            
+            var success = true
+            repeat{
+                print("Enter the amount of your money")
+                var input2 = readLine()!
+                
+                if let num = Int(input2) {
+                    if num < 0 {
+                        print("please enter a valid amount\n")
+                    }else if num == 0{
+                        print("Payment cant be zero\n")
+                    }else if num < totalprice{
+                        print("Payment is less than total price (\(totalprice))\n")
+                    }else{
+                        success = false
+                        print("Your total order : \(totalprice)")
+                        print("You pay : \(num) Change : \(num - totalprice)")
+                        
+                        print("\nEnjoy your meals")
+                        print("\nPress [Return] to go back to main screen")
+                        input = "b"
+                        listpesanan.removeAll()
+                        var success2 = true
+                        repeat{
+                            var asdfas = readLine()!
+                            success2 = false
+                        }while success2
+                        print("")
+                    }
+                } else {
+                    print("Please enter a valid amount")
+                }
+            }while success
+        }
     } while input.caseInsensitiveCompare("b") != .orderedSame
 }
 
