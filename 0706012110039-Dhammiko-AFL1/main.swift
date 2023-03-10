@@ -4,6 +4,7 @@ import Foundation
 //the main loop
 var input = ""
 var listpesanan: [(String,String,Int,Int)] = []
+
 repeat{
     let mainmenu = """
     Welcome to UC-Walk Cafeteria //emoji
@@ -11,7 +12,7 @@ repeat{
     
     [1] Tuku-tuku
     [2] Gotri
-    [3] Kopte
+    [3] Raburi
     [4] Madam Lie
     [5] EnW Sandwiches
     -
@@ -29,16 +30,13 @@ repeat{
     case "1":
         tuku()
     case "2":
-        print("not yet")
-        //gopte()
+        gotri()
     case "3":
-        print("not yet")
-        //kopte()
+        raburi()
     case "4":
         madamlie()
     case "5":
-        print("not yet")
-        //EnW()
+        EnW()
     case "s":
         shoppingcart()
     default:
@@ -160,14 +158,85 @@ func tuku(){
     }while input.caseInsensitiveCompare("b") != .orderedSame
 }
 
+//Gotri
+func gotri(){
+    repeat{
+        let gotri = """
+        Hi, welcome back to Gotri!
+        What would you like to order?
+        [1] Nasi goreng seafood
+        [2] Mie tamie seafood
+        [3] Mie ma la chicken
+        [4] Nasi bakar tuna
+        [5] Sapot tahu Seafood
+        -
+        [B]ack to Main menu
+        """
+        print(gotri)
+        print("Your menu choice? | ", terminator: "")
+        input = readLine()!
+        
+        switch input {
+        case "1":
+            beli(nama:"Nasi goreng seafood", harga:30000, restoran: "Gotri")
+        case "2":
+            beli(nama:"Mie tamie seafood", harga:37000, restoran: "Gotri")
+        case "3":
+            beli(nama:"Mie ma la chicken", harga:27000, restoran: "Gotri")
+        case "4":
+            beli(nama:"Nasi bakar tuna", harga:27000, restoran: "Gotri")
+        case "5":
+            beli(nama:"Sapo tahu seafood", harga:22000, restoran: "Gotri")
+        default:
+            print()
+        }
+    }while input.caseInsensitiveCompare("b") != .orderedSame
+}
+
+//Raburi
+func raburi(){
+    repeat{
+        let raburi = """
+        Hi, welcome back to Raburi!
+        What would you like to order?
+        [1] Gyu shirokara ramen
+        [2] Chicken katsu shirokara ramen
+        [3] Chicken Chasu shirokara ramen
+        [4] Chicken teriyaki shirokara ramen
+        [5] Gyu Jigae Ramen
+        -
+        [B]ack to Main menu
+        """
+        print(raburi)
+        print("Your menu choice? | ", terminator: "")
+        input = readLine()!
+        
+        switch input {
+        case "1":
+            beli(nama:"Gyu shirokara ramen", harga:42000, restoran: "Raburi")
+        case "2":
+            beli(nama:"Chicken katsu shirokara ramen", harga:32000, restoran: "Raburi")
+        case "3":
+            beli(nama:"Chicken Chasu shirokara ramen", harga:32000, restoran: "Raburi")
+        case "4":
+            beli(nama:"Chicken teriyaki shirokara ramen", harga:32000, restoran: "Raburi")
+        case "5":
+            beli(nama:"Gyu Jigae Ramen", harga:45000, restoran: "Raburi")
+        default:
+            print()
+        }
+    }while input.caseInsensitiveCompare("b") != .orderedSame
+}
+
+//madamlie
 func madamlie(){
     repeat{
         let madamlie = """
         Hi, welcome back to Madam lie!
         What would you like to order?
         [1] Nasi ayam geprek
-        [2] Nasi goreng jakarta
-        [3] Mie goreng jakarta
+        [2] Nasi ayam goreng
+        [3] Ayam goreng
         [4] Es teh manis
         [5] Ayam geprek
         -
@@ -179,15 +248,51 @@ func madamlie(){
         
         switch input {
         case "1":
-            beli(nama:"Nasi ayam geprek", harga:30000, restoran: "Madamlie")
+            beli(nama:"Nasi ayam geprek", harga:35000, restoran: "Madamlie")
         case "2":
-            beli(nama:"Nasi goreng jakarta", harga:20000, restoran: "Madamlie")
+            beli(nama:"Nasi ayam goreng", harga:25000, restoran: "Madamlie")
         case "3":
-            beli(nama:"Mie goreng jakarta", harga:20000, restoran: "Madamlie")
+            beli(nama:"ayam goreng", harga:20000, restoran: "Madamlie")
         case "4":
-            beli(nama:"Es teh manis", harga:7000, restoran: "Madamlie")
+            beli(nama:"Es teh manis", harga:5000, restoran: "Madamlie")
         case "5":
-            beli(nama:"Ayam geprek", harga:25000, restoran: "Madamlie")
+            beli(nama:"Ayam geprek", harga:20000, restoran: "Madamlie")
+        default:
+            print()
+        }
+    }while input.caseInsensitiveCompare("b") != .orderedSame
+}
+
+
+//Raburi
+func EnW(){
+    repeat{
+        let raburi = """
+        Hi, welcome back to EnW!
+        What would you like to order?
+        [1] Beef sandwich
+        [2] Chicken mayo sandwich
+        [3] Chicken mentai sandwich
+        [4] Salad
+        [5] Milkshake
+        -
+        [B]ack to Main menu
+        """
+        print(raburi)
+        print("Your menu choice? | ", terminator: "")
+        input = readLine()!
+        
+        switch input {
+        case "1":
+            beli(nama:"Beef sandwich", harga:30000, restoran: "EnW Sandwiches")
+        case "2":
+            beli(nama:"Chicken mayo sandwich", harga:25000, restoran: "EnW Sandwiches")
+        case "3":
+            beli(nama:"Chicken mentai sandwich", harga:25000, restoran: "EnW Sandwiches")
+        case "4":
+            beli(nama:"Salad", harga:20000, restoran: "EnW Sandwiches")
+        case "5":
+            beli(nama:"Milkshake", harga:20000, restoran: "EnW Sandwiches")
         default:
             print()
         }
@@ -233,5 +338,4 @@ func addmakanan(nama: String, total: Int, namaresto: String, harga:Int){
         listpesanan.append((namaresto, nama, total, harga))
     }
 }
-
 
