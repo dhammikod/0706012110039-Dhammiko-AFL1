@@ -7,7 +7,7 @@ var listpesanan: [(String,String,Int,Int)] = []
 
 repeat{
     let mainmenu = """
-    Welcome to UC-Walk Cafeteria //emoji
+    Welcome to UC-Walk Cafeteria 🤩
     Please choose cafeteria
     
     [1] Tuku-tuku
