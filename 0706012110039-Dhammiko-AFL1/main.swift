@@ -6,6 +6,7 @@ var input = ""
 var listpesanan: [(String,String,Int,Int)] = []
 
 repeat{
+    //main menu front end
     let mainmenu = """
     Welcome to UC-Walk Cafeteria 🤩
     Please choose cafeteria
@@ -21,6 +22,8 @@ repeat{
     """
     print(mainmenu)
     print("Your cafeteria choice? | ", terminator: "")
+    
+    
     //send to respective choice function
     input = readLine()!
     input = input.lowercased()
@@ -48,10 +51,12 @@ repeat{
 //shoppingcart page
 func shoppingcart(){
     repeat{
+        //error handling for if cart is empty
         if listpesanan.isEmpty{
             print("Your cart is empty")
             print("\nPress [B] to go back")
         }else{
+            //group the data into a new dictionary
             var ordersByRestaurant: [String: [(String, Int, Int)]] = [:]
             for item in listpesanan {
                 let restaurantName = item.0
@@ -60,11 +65,14 @@ func shoppingcart(){
                 let foodPrice = item.3
                 
                 if ordersByRestaurant[restaurantName] == nil {
+                    //creating a new key in the dictionary
                     ordersByRestaurant[restaurantName] = []
                 }
+                //adding the food item into the dictionary
                 ordersByRestaurant[restaurantName]?.append((foodName, foodQuantity, foodPrice))
             }
 
+            //printing all the values in the dictionary
             for (restaurantName, orders) in ordersByRestaurant {
                 print("Your order from \(restaurantName):")
                 for order in orders {
@@ -75,6 +83,7 @@ func shoppingcart(){
             print("Press [P] to pay/checkout")
         }
         
+        //reading user input
         input = readLine()!
         input = input.lowercased()
         
@@ -87,11 +96,15 @@ func shoppingcart(){
             print("\nYour total order : \(totalprice)")
             
             var success = true
+            //this repeat is for error handling invalid input
             repeat{
                 print("Enter the amount of your money")
                 var input2 = readLine()!
+                //reading user input
                 
+                //error handling for converting string into integer
                 if let num = Int(input2) {
+                    //error handling for each wrong input case
                     if num < 0 {
                         print("please enter a valid amount\n")
                     }else if num == 0{
@@ -106,6 +119,8 @@ func shoppingcart(){
                         print("\nEnjoy your meals")
                         print("\nPress [Return] to go back to main screen")
                         input = "b"
+                        
+                        //removing paid food
                         listpesanan.removeAll()
                         var success2 = true
                         repeat{
@@ -126,6 +141,7 @@ func shoppingcart(){
 //tuku tuku page
 func tuku(){
     repeat{
+        //tuku-tuku menu front end
         let tukutuku = """
         Hi, welcome back to Tuku-Tuku!
         What would you like to order?
@@ -138,9 +154,12 @@ func tuku(){
         [B]ack to Main menu
         """
         print(tukutuku)
+        
+        //read user input
         print("Your menu choice? | ", terminator: "")
         input = readLine()!
         
+        //send to function which adds food into variable list pesanan
         switch input {
         case "1":
             beli(nama:"Tahu isi", harga:10000, restoran: "Tuku-tuku")
@@ -161,6 +180,7 @@ func tuku(){
 //Gotri
 func gotri(){
     repeat{
+        //gotri menu front end
         let gotri = """
         Hi, welcome back to Gotri!
         What would you like to order?
@@ -173,9 +193,12 @@ func gotri(){
         [B]ack to Main menu
         """
         print(gotri)
+        
+        //read user input
         print("Your menu choice? | ", terminator: "")
         input = readLine()!
         
+        //send to function which adds food into variable list pesanan
         switch input {
         case "1":
             beli(nama:"Nasi goreng seafood", harga:30000, restoran: "Gotri")
@@ -196,6 +219,7 @@ func gotri(){
 //Raburi
 func raburi(){
     repeat{
+        //raburi menu front end
         let raburi = """
         Hi, welcome back to Raburi!
         What would you like to order?
@@ -208,9 +232,12 @@ func raburi(){
         [B]ack to Main menu
         """
         print(raburi)
+        
+        //reading user input
         print("Your menu choice? | ", terminator: "")
         input = readLine()!
         
+        //send to function which adds food into variable list pesanan
         switch input {
         case "1":
             beli(nama:"Gyu shirokara ramen", harga:42000, restoran: "Raburi")
@@ -230,6 +257,7 @@ func raburi(){
 
 //madamlie
 func madamlie(){
+    //madamlie menu front end
     repeat{
         let madamlie = """
         Hi, welcome back to Madam lie!
@@ -243,9 +271,12 @@ func madamlie(){
         [B]ack to Main menu
         """
         print(madamlie)
+        
+        //read user input
         print("Your menu choice? | ", terminator: "")
         input = readLine()!
         
+        //send to function which adds food into variable list pesanan
         switch input {
         case "1":
             beli(nama:"Nasi ayam geprek", harga:35000, restoran: "Madamlie")
@@ -266,6 +297,7 @@ func madamlie(){
 
 //Raburi
 func EnW(){
+    //enw menu front end
     repeat{
         let raburi = """
         Hi, welcome back to EnW!
@@ -279,9 +311,12 @@ func EnW(){
         [B]ack to Main menu
         """
         print(raburi)
+        
+        //reading user input
         print("Your menu choice? | ", terminator: "")
         input = readLine()!
         
+        //send to function which adds food into variable list pesanan
         switch input {
         case "1":
             beli(nama:"Beef sandwich", harga:30000, restoran: "EnW Sandwiches")
@@ -302,11 +337,16 @@ func EnW(){
 func beli(nama: String, harga: Int, restoran:String){
     var back = true
     repeat{
+        //buy food confirmation page front end
         print("\n\(nama) @ \(String(harga))")
         print("How many \(nama) do you want to buy?", terminator: "")
+        
+        //reading user input
         input = readLine()!
         
+        //error handling then add to list menu
         if let num = Int(input) {
+            //sending data into addmakanan function
             addmakanan(nama: nama, total: num, namaresto: restoran, harga: harga)
             print("")
             back = false
@@ -325,6 +365,8 @@ func addmakanan(nama: String, total: Int, namaresto: String, harga:Int){
         for pesanan in listpesanan{
             if pesanan.0 == namaresto && pesanan.1 == nama {
                 var newsum = pesanan.2 + total
+                
+                //incrementing the already existing food value by bought number
                 listpesanan[i].2 = newsum
                 ada = true
             }
@@ -332,9 +374,11 @@ func addmakanan(nama: String, total: Int, namaresto: String, harga:Int){
         }
         
         if !ada {
+            //adding a new item into the arraylist
             listpesanan.append((namaresto, nama, total, harga))
         }
     }else{
+        //adding a new item into the arraylist
         listpesanan.append((namaresto, nama, total, harga))
     }
 }
