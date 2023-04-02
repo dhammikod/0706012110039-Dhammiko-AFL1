@@ -12,22 +12,24 @@ class Menu {
 }
 
 class Restaurant {
-    var Nama:String
-    var Listmenu: [Menu]
+    var nama:String
+    var listmenu: [Menu]
     
     init(Name: String, Listmenu: [Menu]) {
-        self.Nama = Name
-        self.Listmenu = Listmenu
+        self.nama = Name
+        self.listmenu = Listmenu
     }
     
     func Greet(){
         print("""
-        Hi, welcome back to \(self.Nama)!
+        Hi, welcome back to \(self.nama)!
         What would you like to order?
+
+        """)
+
+        self.displaymenu()
         
-        \(self.displaymenu())
-        -
-                
+        print("""
         [B]ack to Main menu
         
         Your menu choice? |
@@ -36,31 +38,29 @@ class Restaurant {
     
     func displaymenu(){
         var i = 1
-        for menu in Listmenu{
+        for menu in listmenu{
             print("[\(i)] \(menu.nama)")
             i += 1
         }
     }
 }
 
-class Orderedmenu{
-    var Jumlah: Int
-    var Namamenu: String
-    var Namarestiran: String
-    var Hargamenu:Int
+class Cart_item : Menu{
+    var jumlah: Int
+    var namarestoran: String
     
-    init(Jumlah: Int, Namamenu: String, Namarestiran: String, Hargamenu: Int) {
-        self.Jumlah = Jumlah
-        self.Namamenu = Namamenu
-        self.Namarestiran = Namarestiran
-        self.Hargamenu = Hargamenu
+    init(jumlah: Int, Namaresto: String, nama: String, harga: Int) {
+        self.namarestoran = Namaresto
+        self.jumlah = jumlah
+        super.init(nama: nama, harga: harga)
+
     }
 }
 
 class Cart{
-    var Listpesanan: [Orderedmenu]
+    var Listpesanan: [Cart_item]
     
-    init(Listpesanan: [Orderedmenu]) {
+    init(Listpesanan: [Cart_item]) {
         self.Listpesanan = Listpesanan
     }
 }
@@ -119,37 +119,6 @@ repeat{
 func shoppingcart(){
     repeat{
         //error handling for if cart is empty
-//        if listpesanan.isEmpty{
-//            print("Your cart is empty")
-//            print("\nPress [B] to go back")
-//        }else{
-//            //group the data into a new dictionary
-//            var ordersByRestaurant: [String: [(String, Int, Int)]] = [:]
-//            for item in listpesanan {
-//                let restaurantName = item.0
-//                let foodName = item.1
-//                let foodQuantity = item.2
-//                let foodPrice = item.3
-//
-//                if ordersByRestaurant[restaurantName] == nil {
-//                    //creating a new key in the dictionary
-//                    ordersByRestaurant[restaurantName] = []
-//                }
-//                //adding the food item into the dictionary
-//                ordersByRestaurant[restaurantName]?.append((foodName, foodQuantity, foodPrice))
-//            }
-//
-//            //printing all the values in the dictionary
-//            for (restaurantName, orders) in ordersByRestaurant {
-//                print("Your order from \(restaurantName):")
-//                for order in orders {
-//                    print("- \(order.0) x \(order.1)")
-//                }
-//            }
-//            print("\nPress [B] to go back")
-//            print("Press [P] to pay/checkout")
-//        }
-        
         if pesanans.Listpesanan.isEmpty{
             print("Your cart is empty")
             print("\nPress [B] to go back")
@@ -157,10 +126,10 @@ func shoppingcart(){
             //group the data into a new dictionary
             var ordersByRestaurant: [String: [(String, Int, Int)]] = [:]
             for item in pesanans.Listpesanan {
-                let restaurantName = item.Namarestiran
-                let foodName = item.Namamenu
-                let foodQuantity = item.Jumlah
-                let foodPrice = item.Hargamenu
+                let restaurantName = item.namarestoran
+                let foodName = item.nama
+                let foodQuantity = item.jumlah
+                let foodPrice = item.harga
                 
                 if ordersByRestaurant[restaurantName] == nil {
                     //creating a new key in the dictionary
@@ -189,7 +158,7 @@ func shoppingcart(){
             //counting the price
             var totalprice = 0
             for item in pesanans.Listpesanan{
-                totalprice += (item.Hargamenu * item.Jumlah)
+                totalprice += (item.harga * item.jumlah)
             }
             print("\nYour total order : \(totalprice)")
             
@@ -271,15 +240,15 @@ func tuku(){
         //send to function which adds food into variable list pesanan
         switch input {
         case "1":
-            beli(nama: tuku_tuku.Listmenu[0].nama, harga: tuku_tuku.Listmenu[0].harga, restoran: tuku_tuku.Nama)
+            beli(nama: tuku_tuku.listmenu[0].nama, harga: tuku_tuku.listmenu[0].harga, restoran: tuku_tuku.nama)
         case "2":
-            beli(nama: tuku_tuku.Listmenu[1].nama, harga: tuku_tuku.Listmenu[1].harga, restoran: tuku_tuku.Nama)
+            beli(nama: tuku_tuku.listmenu[1].nama, harga: tuku_tuku.listmenu[1].harga, restoran: tuku_tuku.nama)
         case "3":
-            beli(nama: tuku_tuku.Listmenu[2].nama, harga: tuku_tuku.Listmenu[2].harga, restoran: tuku_tuku.Nama)
+            beli(nama: tuku_tuku.listmenu[2].nama, harga: tuku_tuku.listmenu[2].harga, restoran: tuku_tuku.nama)
         case "4":
-            beli(nama: tuku_tuku.Listmenu[3].nama, harga: tuku_tuku.Listmenu[3].harga, restoran: tuku_tuku.Nama)
+            beli(nama: tuku_tuku.listmenu[3].nama, harga: tuku_tuku.listmenu[3].harga, restoran: tuku_tuku.nama)
         case "5":
-            beli(nama: tuku_tuku.Listmenu[4].nama, harga: tuku_tuku.Listmenu[4].harga, restoran: tuku_tuku.Nama)
+            beli(nama: tuku_tuku.listmenu[4].nama, harga: tuku_tuku.listmenu[4].harga, restoran: tuku_tuku.nama)
         default:
             print()
         }
@@ -306,15 +275,15 @@ func gotri(){
         //send to function which adds food into variable list pesanan
         switch input {
         case "1":
-            beli(nama: gotri.Listmenu[0].nama, harga: gotri.Listmenu[0].harga, restoran: gotri.Nama)
+            beli(nama: gotri.listmenu[0].nama, harga: gotri.listmenu[0].harga, restoran: gotri.nama)
         case "2":
-            beli(nama: gotri.Listmenu[1].nama, harga: gotri.Listmenu[1].harga, restoran: gotri.Nama)
+            beli(nama: gotri.listmenu[1].nama, harga: gotri.listmenu[1].harga, restoran: gotri.nama)
         case "3":
-            beli(nama: gotri.Listmenu[2].nama, harga: gotri.Listmenu[2].harga, restoran: gotri.Nama)
+            beli(nama: gotri.listmenu[2].nama, harga: gotri.listmenu[2].harga, restoran: gotri.nama)
         case "4":
-            beli(nama: gotri.Listmenu[3].nama, harga: gotri.Listmenu[3].harga, restoran: gotri.Nama)
+            beli(nama: gotri.listmenu[3].nama, harga: gotri.listmenu[3].harga, restoran: gotri.nama)
         case "5":
-            beli(nama: gotri.Listmenu[4].nama, harga: gotri.Listmenu[4].harga, restoran: gotri.Nama)
+            beli(nama: gotri.listmenu[4].nama, harga: gotri.listmenu[4].harga, restoran: gotri.nama)
         default:
             print()
         }
@@ -341,15 +310,15 @@ func raburi(){
         //send to function which adds food into variable list pesanan
         switch input {
         case "1":
-            beli(nama: raburi.Listmenu[0].nama, harga: raburi.Listmenu[0].harga, restoran: raburi.Nama)
+            beli(nama: raburi.listmenu[0].nama, harga: raburi.listmenu[0].harga, restoran: raburi.nama)
         case "2":
-            beli(nama: raburi.Listmenu[1].nama, harga: raburi.Listmenu[1].harga, restoran: raburi.Nama)
+            beli(nama: raburi.listmenu[1].nama, harga: raburi.listmenu[1].harga, restoran: raburi.nama)
         case "3":
-            beli(nama: raburi.Listmenu[2].nama, harga: raburi.Listmenu[2].harga, restoran: raburi.Nama)
+            beli(nama: raburi.listmenu[2].nama, harga: raburi.listmenu[2].harga, restoran: raburi.nama)
         case "4":
-            beli(nama: raburi.Listmenu[3].nama, harga: raburi.Listmenu[3].harga, restoran: raburi.Nama)
+            beli(nama: raburi.listmenu[3].nama, harga: raburi.listmenu[3].harga, restoran: raburi.nama)
         case "5":
-            beli(nama: raburi.Listmenu[4].nama, harga: raburi.Listmenu[4].harga, restoran: raburi.Nama)
+            beli(nama: raburi.listmenu[4].nama, harga: raburi.listmenu[4].harga, restoran: raburi.nama)
         default:
             print()
         }
@@ -391,15 +360,15 @@ func madamlie(){
         //send to function which adds food into variable list pesanan
         switch input {
         case "1":
-            beli(nama: madamlie.Listmenu[0].nama, harga: madamlie.Listmenu[0].harga, restoran: madamlie.Nama)
+            beli(nama: madamlie.listmenu[0].nama, harga: madamlie.listmenu[0].harga, restoran: madamlie.nama)
         case "2":
-            beli(nama: madamlie.Listmenu[1].nama, harga: madamlie.Listmenu[1].harga, restoran: madamlie.Nama)
+            beli(nama: madamlie.listmenu[1].nama, harga: madamlie.listmenu[1].harga, restoran: madamlie.nama)
         case "3":
-            beli(nama: madamlie.Listmenu[2].nama, harga: madamlie.Listmenu[2].harga, restoran: madamlie.Nama)
+            beli(nama: madamlie.listmenu[2].nama, harga: madamlie.listmenu[2].harga, restoran: madamlie.nama)
         case "4":
-            beli(nama: madamlie.Listmenu[3].nama, harga: madamlie.Listmenu[3].harga, restoran: madamlie.Nama)
+            beli(nama: madamlie.listmenu[3].nama, harga: madamlie.listmenu[3].harga, restoran: madamlie.nama)
         case "5":
-            beli(nama: madamlie.Listmenu[4].nama, harga: madamlie.Listmenu[4].harga, restoran: madamlie.Nama)
+            beli(nama: madamlie.listmenu[4].nama, harga: madamlie.listmenu[4].harga, restoran: madamlie.nama)
         default:
             print()
         }
@@ -427,15 +396,15 @@ func EnW(){
         //send to function which adds food into variable list pesanan
         switch input {
         case "1":
-            beli(nama: enw.Listmenu[0].nama, harga:enw.Listmenu[0].harga, restoran: enw.Nama)
+            beli(nama: enw.listmenu[0].nama, harga:enw.listmenu[0].harga, restoran: enw.nama)
         case "2":
-            beli(nama: enw.Listmenu[1].nama, harga:enw.Listmenu[1].harga, restoran: enw.Nama)
+            beli(nama: enw.listmenu[1].nama, harga:enw.listmenu[1].harga, restoran: enw.nama)
         case "3":
-            beli(nama: enw.Listmenu[2].nama, harga:enw.Listmenu[2].harga, restoran: enw.Nama)
+            beli(nama: enw.listmenu[2].nama, harga:enw.listmenu[2].harga, restoran: enw.nama)
         case "4":
-            beli(nama: enw.Listmenu[3].nama, harga:enw.Listmenu[3].harga, restoran: enw.Nama)
+            beli(nama: enw.listmenu[3].nama, harga:enw.listmenu[3].harga, restoran: enw.nama)
         case "5":
-            beli(nama: enw.Listmenu[4].nama, harga:enw.Listmenu[4].harga, restoran: enw.Nama)
+            beli(nama: enw.listmenu[4].nama, harga:enw.listmenu[4].harga, restoran: enw.nama)
         default:
             print()
         }
@@ -471,10 +440,10 @@ func addmakanan(nama: String, total: Int, namaresto: String, harga:Int){
         var ada = false
         //search for already existing products
         for pesanan in pesanans.Listpesanan{
-            print("index ke \(i) namaresto: \(pesanan.Namarestiran) namamenu: \(nama)")
-            if pesanan.Namarestiran == namaresto && pesanan.Namamenu == nama {
+            print("index ke \(i) namaresto: \(pesanan.namarestoran) namamenu: \(nama)")
+            if pesanan.namarestoran == namaresto && pesanan.nama == nama {
                 //incrementing the already existing food value by bought number
-                pesanans.Listpesanan[i].Jumlah = pesanan.Jumlah + total
+                pesanans.Listpesanan[i].jumlah = pesanan.jumlah + total
                 ada = true
             }
             i += 1
@@ -483,12 +452,12 @@ func addmakanan(nama: String, total: Int, namaresto: String, harga:Int){
         if !ada {
             print("masuk yang gak ada")
             //adding a new item into the arraylist
-            pesanans.Listpesanan.append(Orderedmenu(Jumlah: total, Namamenu: nama, Namarestiran: namaresto, Hargamenu: harga))
+            pesanans.Listpesanan.append(Cart_item(jumlah: total, Namaresto: namaresto, nama: nama, harga: harga))
         }
     }else{
         print("masuk else")
         //adding a new item into the arraylist
-        pesanans.Listpesanan.append(Orderedmenu(Jumlah: total, Namamenu: nama, Namarestiran: namaresto, Hargamenu: harga))
+        pesanans.Listpesanan.append(Cart_item(jumlah: total, Namaresto: namaresto, nama: nama, harga: harga))
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0401436C29D672CE0004F340 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0401436B29D672CE0004F340 /* Restaurant.swift */; };
 		04D1AEE429ADA02900C7C750 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1AEE329ADA02900C7C750 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0401436B29D672CE0004F340 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		04D1AEE029ADA02900C7C750 /* 0706012110039-Dhammiko-AFL1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "0706012110039-Dhammiko-AFL1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D1AEE329ADA02900C7C750 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				04D1AEE329ADA02900C7C750 /* main.swift */,
+				0401436B29D672CE0004F340 /* Restaurant.swift */,
 			);
 			path = "0706012110039-Dhammiko-AFL1";
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0401436C29D672CE0004F340 /* Restaurant.swift in Sources */,
 				04D1AEE429ADA02900C7C750 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
